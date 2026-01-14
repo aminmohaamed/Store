@@ -1,0 +1,11 @@
+import ProductCard from "./productCard";
+
+export default function ProductList({ products }) {
+  return (
+    <div className="grid md:grid-cols-3 gap-6">
+      {products.map((product) => (
+        <ProductCard product={product} key={product.id} />
+      ))}
+    </div>
+  );
+}
