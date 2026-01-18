@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { createProduct, getCategories } from "../api/productsApi";
-import Loader from "../components/Loader";
 import ErrorMessage from "../components/ErrorMessage";
 import { addProduct } from "../features/products/productsSlice";
 import { useDispatch } from "react-redux";
@@ -11,6 +10,7 @@ const intialState = {
   price: "",
   category: "",
   image: "",
+  id: Date.now(),
 };
 export default function CreateProductPage() {
   const dispatch = useDispatch();
@@ -45,8 +45,8 @@ export default function CreateProductPage() {
 
     try {
       setLoading(true);
-      const data = await createProduct(form);
-      dispatch(addProduct(data));
+      await createProduct(form);
+      dispatch(addProduct(form));
       setSuccess(true);
       setForm(intialState);
       navigate("/product");

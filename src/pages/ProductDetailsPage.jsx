@@ -21,7 +21,7 @@ export default function ProductDetailsPage() {
       .catch((e) => setError(e.message))
       .finally(() => setLoading(false));
   }, [id]);
-
+  console.log(product);
   useEffect(() => {
     if (product?.title) {
       document.title = product.title;

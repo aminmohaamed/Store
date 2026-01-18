@@ -1,10 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  fetchProducts,
-  setSort,
-  setPage,
-} from "../features/products/productsSlice";
+import { fetchProducts, setSort } from "../features/products/productsSlice";
 import Loader from "../components/Loader";
 import ErrorMessage from "../components/ErrorMessage";
 import Pagination from "../components/Pagination";
@@ -52,12 +48,7 @@ export default function ProductsPage() {
       <ProductList products={paginated} />
 
       <div className="mt-8 flex justify-center">
-        <Pagination
-          total={sorted.length}
-          page={page}
-          perPage={perPage}
-          onChange={(p) => dispatch(setPage(p))}
-        />
+        <Pagination />
       </div>
     </div>
   );
