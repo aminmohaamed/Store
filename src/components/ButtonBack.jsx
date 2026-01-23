@@ -1,14 +1,12 @@
 import { useNavigate } from "react-router-dom";
+import Button from "./Button";
 
 function ButtonBack() {
   const navigate = useNavigate();
   return (
-    <button
-      onClick={() => navigate("/product")}
-      className="border px-4 py-2 rounded cursor-pointer"
-    >
+    <Button type="secoundray" onClick={() => navigate("/product")}>
       Back
-    </button>
+    </Button>
   );
 }
 

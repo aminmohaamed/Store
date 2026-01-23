@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "./authSlice";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import Button from "../../components/Button";
 
 export default function LoginPage() {
   const [form, setForm] = useState({ username: "", password: "" });
@@ -16,7 +17,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="max-w-sm mx-auto p-6">
+    <div className="max-w-sm mx-auto p-6  ">
       <h2 className="text-xl font-bold mb-4">Login</h2>
 
       {error && <p className="text-red-500">{error}</p>}
@@ -24,23 +25,20 @@ export default function LoginPage() {
       <form onSubmit={submit} className="space-y-3">
         <input
           placeholder="Username"
-          className="border p-2 w-full"
+          className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-green-400 transition"
           onChange={(e) => setForm({ ...form, username: e.target.value })}
         />
 
         <input
           placeholder="Password"
           type="password"
-          className="border p-2 w-full"
+          className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-green-400 transition"
           onChange={(e) => setForm({ ...form, password: e.target.value })}
         />
 
-        <button
-          disabled={loading}
-          className="bg-black text-white px-4 py-2 w-full"
-        >
+        <Button disabled={loading} type="primary">
           {loading ? "Loading..." : "Login"}
-        </button>
+        </Button>
       </form>
     </div>
   );

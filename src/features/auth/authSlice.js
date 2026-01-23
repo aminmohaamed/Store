@@ -7,7 +7,7 @@ export const loginUser = createAsyncThunk(
     if (username && password) {
       return { username };
     } else {
-      throw new Error("Invalid credentials");
+      throw new Error("Please enter your username and Passowrd to login");
     }
   }
 );

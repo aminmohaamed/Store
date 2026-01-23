@@ -4,6 +4,7 @@ import ErrorMessage from "../components/ErrorMessage";
 import { addProduct } from "../features/products/productsSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Button from "../components/Button";
 const intialState = {
   title: "",
   description: "",
@@ -72,14 +73,14 @@ export default function CreateProductPage() {
           value={form.title}
           onChange={handleChange}
           placeholder="Title"
-          className="border p-2 w-full"
+          className="input"
         />
         <textarea
           name="description"
           value={form.description}
           onChange={handleChange}
           placeholder="Description"
-          className="border p-2 w-full"
+          className="input"
         />
         <input
           name="price"
@@ -87,14 +88,14 @@ export default function CreateProductPage() {
           value={form.price}
           onChange={handleChange}
           placeholder="Price"
-          className="border p-2 w-full"
+          className="input"
         />
 
         <select
           name="category"
           value={form.category}
           onChange={handleChange}
-          className="border p-2 w-full"
+          className="input"
         >
           <option value="">Select Category</option>
           {categories.map((category) => (
@@ -107,15 +108,12 @@ export default function CreateProductPage() {
           value={form.image}
           onChange={handleChange}
           placeholder="Image URL"
-          className="border p-2 w-full"
+          className="input"
         />
 
-        <button
-          disabled={loading}
-          className="bg-black text-white px-4 py-2 w-full rounded"
-        >
+        <Button disabled={loading} type="black">
           {loading ? "Creating..." : "Create"}
-        </button>
+        </Button>
       </form>
     </div>
   );

@@ -5,6 +5,7 @@ import Loader from "../components/Loader";
 import ErrorMessage from "../components/ErrorMessage";
 import Pagination from "../components/Pagination";
 import ProductList from "../features/products/ProductList";
+import CustomSelect from "../components/CustomSelect";
 
 export default function ProductsPage() {
   const dispatch = useDispatch();
@@ -32,18 +33,16 @@ export default function ProductsPage() {
 
   return (
     <div className="p-6 max-w-7xl mx-auto">
-      <div className="mb-6 flex justify-end">
-        <select
-          value={sort}
-          onChange={(e) => dispatch(setSort(e.target.value))}
-          className="border p-2 rounded"
-        >
-          <option value="none">No sorting</option>
-          <option value="price-asc">Price ↑</option>
-          <option value="price-desc">Price ↓</option>
-          <option value="category">Category</option>
-        </select>
-      </div>
+      <CustomSelect
+        value={sort}
+        onChange={(val) => dispatch(setSort(val))}
+        options={[
+          { label: "No sorting", value: "none" },
+          { label: "Price ↑", value: "price-asc" },
+          { label: "Price ↓", value: "price-desc" },
+          { label: "Category", value: "category" },
+        ]}
+      />
 
       <ProductList products={paginated} />
 

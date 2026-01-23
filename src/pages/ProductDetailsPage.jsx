@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getProductById } from "../api/productsApi";
-import { useDispatch } from "react-redux";
-import { addToCart } from "../features/cart/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart, getCurrentQuantityById } from "../features/cart/cartSlice";
 import Loader from "../components/Loader";
 import ErrorMessage from "../components/ErrorMessage";
 import ButtonBack from "../components/ButtonBack";
+import Button from "../components/Button";
+import DeleteItem from "../features/cart/DeleteItem";
 
 export default function ProductDetailsPage() {
   const { id } = useParams();
@@ -21,7 +23,11 @@ export default function ProductDetailsPage() {
       .catch((e) => setError(e.message))
       .finally(() => setLoading(false));
   }, [id]);
-  console.log(product);
+
+  const currentQuantity = useSelector(
+    product?.id ? getCurrentQuantityById(product.id) : () => 0
+  );
+
   useEffect(() => {
     if (product?.title) {
       document.title = product.title;
@@ -47,12 +53,18 @@ export default function ProductDetailsPage() {
         <p className="text-xl font-semibold mb-4">${product.price}</p>
 
         <div className="flex gap-3">
-          <button
-            onClick={() => dispatch(addToCart(product))}
-            className="bg-black text-white px-4 py-2 rounded"
-          >
-            Add to Cart
-          </button>
+          {!currentQuantity > 0 ? (
+            <Button
+              type="black"
+              onClick={() => {
+                dispatch(addToCart(product));
+              }}
+            >
+              Add to Cart
+            </Button>
+          ) : (
+            <DeleteItem orderId={product.id}>Delete </DeleteItem>
+          )}
 
           <ButtonBack />
         </div>

@@ -11,12 +11,12 @@ export default function Navbar() {
   const linkClass = ({ isActive }) =>
     `px-3 py-2 rounded-md transition font-medium ${
       isActive
-        ? "bg-blue-600 text-white"
+        ? "bg-green-500 text-white"
         : "text-gray-600 hover:bg-gray-100 hover:text-black"
     }`;
 
   return (
-    <nav className="bg-white shadow-md sticky top-0 z-50">
+    <nav className="bg-stone-200 shadow-md sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
         <NavLink to="/" className="flex items-center gap-2">
           <span className="font-bold text-lg text-gray-700 hidden sm:block">
